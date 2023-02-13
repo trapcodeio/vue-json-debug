@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
-import {useDebugStore} from "./components/debug/debug.setup";
 import Debug from "./components/debug/Debug.vue";
 
-const {slots} = useDebugStore()
 
 // User Object
 const user = {
@@ -49,7 +47,7 @@ const blogPost = {
   <HelloWorld msg="Vite + Vue" />
 
 
-  <Debug style="margin-top: 50px" :data="{ slots: slots.size}" />
+  <Debug style="margin-top: 50px" :data="user" />
   <Debug style="margin-top: 50px" :data="blogPost" theme="dark" />
 
 </template>

@@ -8,7 +8,7 @@ export type DebugState = {
 
 export function DebugStore() {
     const slots = ref(new Map<number, any>());
-    // slots.value.set(0, {name: "First Debug Box"})
+    const visibility = reactive({} as Record<number, boolean>)
 
     // Create state
     const state = reactive<DebugState>({
@@ -21,11 +21,26 @@ export function DebugStore() {
         // add slot to map
         slots.value.set(nextSlotKey, data);
 
-        console.log({slots: slots.value.size, nextSlotKey})
-
+        return nextSlotKey;
     }
 
-    return {slots, state, addSlot}
+    function toggleVisibility(id: number, val?: boolean) {
+        if (val === undefined) {
+            if (typeof visibility[id] === "boolean") {
+                visibility[id] = !visibility[id]
+            } else {
+                visibility[id] = false;
+            }
+        } else {
+            visibility[id] = val
+        }
+    }
+
+    function isVisible(id: number) {
+        return visibility[id] !== false;
+    }
+
+    return {state, addSlot, isVisible, toggleVisibility}
 }
 
 
