@@ -16,7 +16,7 @@
 }
 
 .vd-content {
-    @apply font-medium px-1 my-1;
+    @apply font-medium px-1 my-0;
 }
 
 .vd-light-theme {

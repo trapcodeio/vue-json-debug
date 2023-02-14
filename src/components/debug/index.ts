@@ -1,14 +1,18 @@
 import { computed, inject, reactive, ref, watch } from "vue";
 
-export type DebugState = { minimized: boolean; showAll: boolean | undefined };
+export type DebugState = {
+  minimized: boolean;
+  showAll: boolean | undefined;
+};
 
 export type DebugDockComponents = {
   before: string[];
   after: string[];
 };
 
-export function DebugStore() {
+export function DebugStore(theme?: string) {
   const slots = ref(new Map<number, { name?: string; data: any }>());
+
   let stateFromStorage = localStorage.getItem("vd__debugState");
   let defaultState: DebugState = {
     minimized: false,
@@ -91,7 +95,15 @@ export function DebugStore() {
     }
   }
 
-  return { state, stats, addSlot, isVisible, toggleVisibility, toggleShowAll };
+  return {
+    state,
+    stats,
+    defaultTheme: theme ? theme : "light",
+    addSlot,
+    isVisible,
+    toggleVisibility,
+    toggleShowAll,
+  };
 }
 
 export const useDebugStore = () => {

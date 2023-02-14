@@ -4,6 +4,7 @@ import DebugDock from "./DebugDock.vue";
 import { DebugStore, DebugDockComponents } from "./";
 
 type DebugPluginOptions = {
+  defaultDebugTheme?: string;
   registerDebugComponent?: boolean;
   components?: {
     before?: Record<string, Component>;
@@ -15,6 +16,7 @@ const DebugPlugin = <Plugin>{
   install(app, options?: DebugPluginOptions) {
     // Merge options
     const opts: DebugPluginOptions = {
+      defaultDebugTheme: "light",
       registerDebugComponent: false,
       ...(options || {}),
     };
@@ -54,7 +56,7 @@ const DebugPlugin = <Plugin>{
     }
 
     // provide state
-    app.provide("DebugStore", DebugStore());
+    app.provide("DebugStore", DebugStore(opts.defaultDebugTheme));
     app.provide("DebugDockComponents", DebugDockComponents);
   },
 };

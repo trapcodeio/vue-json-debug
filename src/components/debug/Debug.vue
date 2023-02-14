@@ -10,7 +10,8 @@ import { useDebugStore } from "./";
 // Check if in development mode
 const isDev = import.meta.env.DEV;
 
-const { state, addSlot, isVisible, toggleVisibility } = useDebugStore();
+const { defaultTheme, state, addSlot, isVisible, toggleVisibility } =
+  useDebugStore();
 
 /**
  * Props
@@ -21,8 +22,9 @@ const props = defineProps({
   space: { type: Number, default: 2 },
   name: { type: String },
   hideName: { type: Boolean, default: false },
-  theme: { type: String, default: "light" },
+  theme: { type: String },
 });
+
 const id = ref<number>();
 
 const showMe = computed(() => {
@@ -51,8 +53,8 @@ function processData(data: any, space: number = 2) {
 </script>
 
 <template>
-  <div v-if="showMe" :key="id">
-    <div :class="`vd-${theme}-theme`">
+  <div v-if="showMe" :key="id" class="vd-debug-component">
+    <div :class="`vd-${theme ? theme : defaultTheme}-theme`">
       <template v-if="data">
         <div class="vd-header">
           <span v-if="name && !hideName" v-text="name"> </span>

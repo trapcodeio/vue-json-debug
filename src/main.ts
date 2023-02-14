@@ -7,6 +7,7 @@ import "./assets/debug.css";
 const app = createApp(App);
 
 useDebugPlugin(app, {
+  // defaultDebugTheme: "dark",
   registerDebugComponent: true,
 });
 
