@@ -47,11 +47,16 @@
 
 #DebugDock {
     @apply fixed bottom-0 left-0 z-50;
-    @apply bg-stone-900 w-full text-sm py-1;
+    border-top: 1px solid;
+    @apply bg-stone-900 w-full text-sm py-1 border-gray-400 border-opacity-20;
 }
 
 .vdd-wrapper {
-    @apply container mx-auto text-left  flex space-x-3;
+    @apply lg:container mx-auto text-left flex space-x-5 mx-2;
+}
+
+.vdd-slots {
+    @apply flex space-x-2;
 }
 
 .vdd-tabs {
@@ -59,11 +64,11 @@
 }
 
 .vdd-text {
-    @apply my-1 text-green-500
+    @apply text-stone-300 opacity-70;
 }
 
 .vdd-tab {
-    @apply px-3 py-1 border-0 rounded-full ring-0;
+    @apply px-2 py-0.5 border-0 rounded-full ring-0;
     @apply focus:ring-0 focus:outline-none;
 }
 

@@ -46,13 +46,8 @@ const blogPost = {
   </div>
   <HelloWorld msg="Vite + Vue" />
 
-  <Debug style="margin-top: 50px" :data="user" name="User" />
-  <Debug
-    style="margin-top: 50px"
-    :data="blogPost"
-    theme="dark"
-    name="Blog Post"
-  />
+  <Debug style="margin-top: 20px" :data="user" />
+  <Debug style="margin-top: 20px" :data="blogPost" theme="dark" />
 
   <!--suppress VueMissingComponentImportInspection -->
   <DebugDock />

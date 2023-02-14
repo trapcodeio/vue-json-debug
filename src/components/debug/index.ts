@@ -2,6 +2,11 @@ import { computed, inject, reactive, ref } from "vue";
 
 export type DebugState = { minimized: boolean };
 
+export type DebugDockComponents = {
+  before: string[];
+  after: string[];
+};
+
 export function DebugStore() {
   const slots = ref(new Map<number, { name?: string; data: any }>());
 

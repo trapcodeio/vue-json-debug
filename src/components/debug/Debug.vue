@@ -35,7 +35,7 @@ function processData(data: any, space: number = 2) {
 </script>
 
 <template>
-  <div v-if="isVisible(id)">
+  <div v-if="id && isVisible(id)" :key="id">
     <div :class="`vd-${theme}-theme`" v-if="isDev || (!isDev && forceShow)">
       <template v-if="data">
         <div class="vd-header">
