@@ -69,6 +69,10 @@ export function DebugStore(theme?: string) {
     return id;
   }
 
+  function removeSlot(id: number) {
+    slots.value.delete(id);
+  }
+
   function toggleVisibility(id: number, val?: boolean) {
     if (val === undefined) {
       if (typeof visibility[id] === "boolean") {
@@ -100,6 +104,7 @@ export function DebugStore(theme?: string) {
     stats,
     defaultTheme: theme ? theme : "light",
     addSlot,
+    removeSlot,
     isVisible,
     toggleVisibility,
     toggleShowAll,

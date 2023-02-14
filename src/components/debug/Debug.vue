@@ -4,14 +4,20 @@ export default {
 };
 </script>
 <script lang="ts" setup>
-import { computed, onMounted, type PropType, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, type PropType, ref } from "vue";
 import { useDebugStore } from "./";
 
 // Check if in development mode
 const isDev = import.meta.env.DEV;
 
-const { defaultTheme, state, addSlot, isVisible, toggleVisibility } =
-  useDebugStore();
+const {
+  defaultTheme,
+  state,
+  addSlot,
+  removeSlot,
+  isVisible,
+  toggleVisibility,
+} = useDebugStore();
 
 /**
  * Props
@@ -50,6 +56,12 @@ function processData(data: any, space: number = 2) {
     return data;
   }
 }
+
+onBeforeUnmount(() => {
+  if (typeof id.value === "number") {
+    removeSlot(id.value);
+  }
+});
 </script>
 
 <template>
