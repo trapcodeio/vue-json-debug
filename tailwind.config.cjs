@@ -2,7 +2,10 @@
 // const colors = require('tailwindcss/colors');
 
 module.exports = {
-  content: ["./src/components/debug/Debug.vue"],
+  content: [
+      "./src/components/debug/Debug.vue",
+      "./src/components/debug/DebugDock.vue"
+  ],
   theme: {
     extend: {
       colors: {

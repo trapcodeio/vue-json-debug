@@ -1,19 +1,24 @@
 <script lang="ts" setup>
 import { DebugDockComponents, useDebugStore } from "./index";
-import { inject } from "vue";
+import { computed, inject } from "vue";
 
-const { slotStats, isVisible, toggleVisibility } = useDebugStore();
+const { stats, state, isVisible, toggleVisibility, toggleShowAll } =
+  useDebugStore();
 const debugDockComponents = inject<DebugDockComponents>("DebugDockComponents", {
   before: [],
   after: [],
+});
+
+const showAllTitle = computed(() => {
+  if (state.showAll === true) return "all";
+  else if (state.showAll === false) return "none";
+  return "custom";
 });
 
 function brief(str: string, limit = 6) {
   if (str.length <= limit) return str;
   return str.slice(0, limit).trim() + "...";
 }
-
-// function toggleSlot(i: number) {}
 </script>
 <template>
   <div id="DebugDock">
@@ -26,17 +31,24 @@ function brief(str: string, limit = 6) {
       <div class="vdd-slots">
         <span class="vdd-text">slots:</span>
         <div class="vdd-tabs">
-          <template v-for="i of slotStats.keys">
+          <template v-for="i of stats.keys">
             <button
               @click.prevent="() => toggleVisibility(i)"
               class="vdd-tab"
               :class="{ active: isVisible(i) }"
             >
-              {{
-                slotStats.names[i] ? i + ". " + brief(slotStats.names[i]) : i
-              }}
+              {{ stats.names[i] ? i + ". " + brief(stats.names[i]) : i }}
             </button>
           </template>
+        </div>
+        <div class="vdd-slot-actions">
+          <button
+            @click.prevent="toggleShowAll"
+            title="Toggle Visibility"
+            class="vdd-show-toggle"
+          >
+            {{ showAllTitle }}
+          </button>
         </div>
       </div>
       <template v-if="debugDockComponents.after.length">

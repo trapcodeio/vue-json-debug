@@ -1,0 +1,9 @@
+{
+  "name": "vue-json-debug",
+  "version": "0.0.3",
+  "description": "Vue Debug plugin",
+  "main": "dist/index.js",
+  "author": "trapcodeio",
+  "license": "MIT",
+  "private": false
+}

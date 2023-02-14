@@ -1,11 +1,16 @@
+<script lang="ts">
+export default {
+  name: "Debug",
+};
+</script>
 <script lang="ts" setup>
-import { onMounted, type PropType, ref } from "vue";
+import { computed, onMounted, type PropType, ref } from "vue";
 import { useDebugStore } from "./";
 
 // Check if in development mode
 const isDev = import.meta.env.DEV;
 
-const { addSlot, isVisible, toggleVisibility } = useDebugStore();
+const { state, addSlot, isVisible, toggleVisibility } = useDebugStore();
 
 /**
  * Props
@@ -19,6 +24,17 @@ const props = defineProps({
   theme: { type: String, default: "light" },
 });
 const id = ref<number>();
+
+const showMe = computed(() => {
+  // only show if in dev mode
+  if (isDev && state.showAll !== false) {
+    // only show id has been assigned and is visible
+    return (
+      typeof id.value === "number" && (state.showAll || isVisible(id.value))
+    );
+  }
+  return false;
+});
 
 onMounted(() => {
   id.value = addSlot(props.data, props.name);
@@ -35,8 +51,8 @@ function processData(data: any, space: number = 2) {
 </script>
 
 <template>
-  <div v-if="id && isVisible(id)" :key="id">
-    <div :class="`vd-${theme}-theme`" v-if="isDev || (!isDev && forceShow)">
+  <div v-if="showMe" :key="id">
+    <div :class="`vd-${theme}-theme`">
       <template v-if="data">
         <div class="vd-header">
           <span v-if="name && !hideName" v-text="name"> </span>

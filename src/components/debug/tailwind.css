@@ -56,7 +56,19 @@
 }
 
 .vdd-slots {
-    @apply flex space-x-2;
+    @apply flex space-x-3;
+}
+
+.vdd-slots svg {
+    @apply w-4 h-4;
+}
+
+.vdd-slot-actions {
+    @apply flex;
+}
+
+.vdd-show-toggle {
+    @apply text-xs bg-transparent border-none cursor-pointer hover:text-green-500;
 }
 
 .vdd-tabs {

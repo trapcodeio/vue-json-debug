@@ -3,10 +3,6 @@ import Debug from "./Debug.vue";
 import DebugDock from "./DebugDock.vue";
 import { DebugStore, DebugDockComponents } from "./";
 
-export type DebugState = {
-  minimized: boolean;
-};
-
 type DebugPluginOptions = {
   registerDebugComponent?: boolean;
   components?: {
@@ -16,7 +12,7 @@ type DebugPluginOptions = {
 };
 
 const DebugPlugin = <Plugin>{
-  install(app, options?: DebugState) {
+  install(app, options?: DebugPluginOptions) {
     // Merge options
     const opts: DebugPluginOptions = {
       registerDebugComponent: false,

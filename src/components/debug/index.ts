@@ -1,6 +1,6 @@
-import { computed, inject, reactive, ref } from "vue";
+import { computed, inject, reactive, ref, watch } from "vue";
 
-export type DebugState = { minimized: boolean };
+export type DebugState = { minimized: boolean; showAll: boolean | undefined };
 
 export type DebugDockComponents = {
   before: string[];
@@ -9,16 +9,40 @@ export type DebugDockComponents = {
 
 export function DebugStore() {
   const slots = ref(new Map<number, { name?: string; data: any }>());
+  let stateFromStorage = localStorage.getItem("vd__debugState");
+  let defaultState: DebugState = {
+    minimized: false,
+    showAll: undefined,
+  };
 
-  const visibility = reactive({} as Record<number, boolean>);
+  let defaultVisibility: Record<number, boolean> = {};
+
+  if (stateFromStorage) {
+    const { state, visibility } = JSON.parse(stateFromStorage);
+
+    defaultState = state;
+    defaultVisibility = visibility;
+  }
+
+  const visibility = reactive(defaultVisibility);
 
   // Create state
-  const state = reactive<DebugState>({
-    minimized: false,
-  });
+  const state = reactive<DebugState>(defaultState);
+
+  // save state to local storage on change
+  watch(
+    [state, visibility],
+    () => {
+      localStorage.setItem(
+        "vd__debugState",
+        JSON.stringify({ state, visibility })
+      );
+    },
+    { immediate: true }
+  );
 
   // get slots as array
-  const slotStats = computed(() => {
+  const stats = computed(() => {
     const names = {} as Record<number, string | undefined>;
 
     slots.value.forEach((v, k) => {
@@ -35,7 +59,7 @@ export function DebugStore() {
     const id = slots.value.size + 1;
 
     // add slot to map
-    // visibility[id] = false;
+    if (!visibility.hasOwnProperty(id)) visibility[id] = true;
     slots.value.set(id, { name, data });
 
     return id;
@@ -57,7 +81,17 @@ export function DebugStore() {
     return visibility[id] !== false;
   }
 
-  return { state, slotStats, addSlot, isVisible, toggleVisibility };
+  function toggleShowAll() {
+    if (state.showAll === undefined) {
+      state.showAll = true;
+    } else if (state.showAll) {
+      state.showAll = false;
+    } else {
+      state.showAll = undefined;
+    }
+  }
+
+  return { state, stats, addSlot, isVisible, toggleVisibility, toggleShowAll };
 }
 
 export const useDebugStore = () => {
