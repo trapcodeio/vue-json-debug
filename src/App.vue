@@ -1,38 +1,38 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
 import Debug from "./components/debug/Debug.vue";
-
+// import DebugDock from "./components/debug/DebugDock.vue";
 
 // User Object
 const user = {
-  name: 'John Doe',
+  name: "John Doe",
   age: 30,
   address: {
-    street: '50 Main st',
-    city: 'Boston',
-    state: 'MA',
+    street: "50 Main st",
+    city: "Boston",
+    state: "MA",
   },
-  hobbies: ['movies', 'music'],
+  hobbies: ["movies", "music"],
   isMarried: false,
-}
+};
 
 // Blog Post Object
 const blogPost = {
-  title: 'Hello World',
-  body: 'This is a blog post',
+  title: "Hello World",
+  body: "This is a blog post",
   comments: [
     {
       id: 1,
-      body: 'Great post',
-      date: '2021-01-01',
+      body: "Great post",
+      date: "2021-01-01",
     },
     {
       id: 2,
-      body: 'I like this post',
-      date: '2021-01-02',
+      body: "I like this post",
+      date: "2021-01-02",
     },
   ],
-}
+};
 </script>
 
 <template>
@@ -46,10 +46,16 @@ const blogPost = {
   </div>
   <HelloWorld msg="Vite + Vue" />
 
+  <Debug style="margin-top: 50px" :data="user" name="User" />
+  <Debug
+    style="margin-top: 50px"
+    :data="blogPost"
+    theme="dark"
+    name="Blog Post"
+  />
 
-  <Debug style="margin-top: 50px" :data="user" />
-  <Debug style="margin-top: 50px" :data="blogPost" theme="dark" />
-
+  <!--suppress VueMissingComponentImportInspection -->
+  <DebugDock />
 </template>
 
 <style scoped>
@@ -59,9 +65,11 @@ const blogPost = {
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }

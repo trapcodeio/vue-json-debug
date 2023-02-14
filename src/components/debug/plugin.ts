@@ -1,13 +1,14 @@
 import {App, Plugin} from "vue";
 import Debug from "./Debug.vue";
-import {DebugStore} from "./debug.setup";
+import DebugDock from "./DebugDock.vue";
+import {DebugStore} from "./";
 
 export type DebugState = {
     minimized: boolean;
 }
 
 type DebugPluginOptions = {
-    registerComponent?: boolean;
+    registerDebugComponent?: boolean;
 }
 
 
@@ -15,12 +16,17 @@ const DebugPlugin = <Plugin>{
     install(app, options?: DebugState) {
         // Merge options
         const opts: DebugPluginOptions = {
-            registerComponent: false,
+            registerDebugComponent: false,
             ...(options || {})
         }
 
-        // Register Component
-        if (opts.registerComponent) app.component("Debug", Debug);
+        // Register Debug Dock
+        app.component("DebugDock", DebugDock)
+
+        // Register Debug Component
+        if (opts.registerDebugComponent) {
+            app.component("Debug", Debug)
+        }
 
         // provide state
         app.provide("DebugStore", DebugStore());

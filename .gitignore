@@ -1,3 +1,5 @@
 node_modules
 .idea
 .vscode
+
+src/assets/debug.css

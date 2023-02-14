@@ -1,0 +1,76 @@
+/*@tailwind base;*/
+/*@tailwind components;*/
+/*@tailwind utilities;*/
+
+.vd-header {
+    @apply flex justify-between;
+}
+
+.vd-header > button {
+    @apply p-1 m-0 bg-transparent border-none cursor-pointer text-sm;
+    @apply hover:underline hover:font-bold;
+}
+
+.vd-header > span {
+    @apply p-1 text-sm font-medium;
+}
+
+.vd-content {
+    @apply font-medium px-1 my-1;
+}
+
+.vd-light-theme {
+    @apply bg-stone-100 text-stone-900 rounded shadow text-left;
+}
+
+.vd-light-theme .vd-header > button {
+    @apply text-stone-900;
+}
+
+.vd-light-theme .vd-header > span {
+    @apply text-green-700;
+}
+
+.vd-dark-theme {
+    @apply bg-stone-900;
+    @apply text-stone-100 rounded shadow text-left;
+}
+
+.vd-dark-theme .vd-header > button {
+    @apply text-stone-100;
+}
+
+.vd-dark-theme .vd-header > span {
+    @apply text-green-600;
+}
+
+
+#DebugDock {
+    @apply fixed bottom-0 left-0 z-50;
+    @apply bg-stone-900 w-full text-sm py-1;
+}
+
+.vdd-wrapper {
+    @apply container mx-auto text-left  flex space-x-3;
+}
+
+.vdd-tabs {
+    @apply flex space-x-1;
+}
+
+.vdd-text {
+    @apply my-1 text-green-500
+}
+
+.vdd-tab {
+    @apply px-3 py-1 border-0 rounded-full ring-0;
+    @apply focus:ring-0 focus:outline-none;
+}
+
+.vdd-tab.active {
+    @apply bg-green-900  hover:bg-green-800;
+}
+
+.vdd-tab:not(.active) {
+    @apply bg-stone-800  hover:bg-stone-700;
+}
