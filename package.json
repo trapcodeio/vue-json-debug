@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run dev:css && vite",
+    "dev:css": "npx tailwindcss -i ./src/components/debug/tailwind.css -o ./src/assets/debug.css",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "watch:css": "npx tailwindcss -i ./src/components/debug/tailwind.css -o ./src/assets/debug.css --watch"
