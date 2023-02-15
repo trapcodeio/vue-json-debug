@@ -1,3 +1,6 @@
+#u update readme
+cp ./README.md ./package/README.md
+
 # delete package src folder
 rm -rf ./package/src
 

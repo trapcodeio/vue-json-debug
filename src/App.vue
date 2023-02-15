@@ -1,7 +1,5 @@
 <!--suppress VueMissingComponentImportInspection -->
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
-
 // User Object
 const user = {
   name: "John Doe",
@@ -43,7 +41,8 @@ const blogPost = {
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+
+  <h2>vue-json-debug Demo</h2>
 
   <Debug style="margin-top: 20px" :data="user" name="User" />
   <Debug
