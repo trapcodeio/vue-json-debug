@@ -57,7 +57,11 @@ function onSLotClick(i: number) {
             <button
               @click.prevent="() => onSLotClick(i)"
               class="vdd-tab"
-              :class="{ active: (state.showAll !== false) & isVisible(i) }"
+              :class="{
+                active:
+                  state.showAll === true ||
+                  (state.showAll !== false && isVisible(i)),
+              }"
             >
               {{
                 stats.names[i]
