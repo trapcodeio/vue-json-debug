@@ -2,11 +2,28 @@
 import { DebugDockComponents, useDebugStore } from "./index";
 import { computed, inject } from "vue";
 
-const { stats, state, isVisible, toggleVisibility, toggleShowAll } =
-  useDebugStore();
+const {
+  enabled,
+  options,
+  stats,
+  state,
+  isVisible,
+  toggleVisibility,
+  toggleShowAll,
+} = useDebugStore();
+
 const debugDockComponents = inject<DebugDockComponents>("DebugDockComponents", {
   before: [],
   after: [],
+});
+
+const showMe = computed(() => {
+  // only show if enabled
+  if (enabled) {
+    return !(options.dock.hideIfNoSlots && stats.value.keys.length === 0);
+  }
+
+  return false;
 });
 
 const showAllTitle = computed(() => {
@@ -21,7 +38,7 @@ function brief(str: string, limit = 6) {
 }
 </script>
 <template>
-  <div id="DebugDock">
+  <div v-if="showMe" id="DebugDock">
     <div class="vdd-wrapper">
       <template v-if="debugDockComponents.before.length">
         <template v-for="component in debugDockComponents.before">
@@ -37,7 +54,13 @@ function brief(str: string, limit = 6) {
               class="vdd-tab"
               :class="{ active: isVisible(i) }"
             >
-              {{ stats.names[i] ? i + ". " + brief(stats.names[i]) : i }}
+              {{
+                stats.names[i]
+                  ? i +
+                    ". " +
+                    brief(stats.names[i], options.dock.slotTitleLimit)
+                  : i
+              }}
             </button>
           </template>
         </div>

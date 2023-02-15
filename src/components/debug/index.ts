@@ -1,7 +1,6 @@
-import { computed, inject, reactive, ref, watch } from "vue";
+import { Component, computed, inject, reactive, ref, watch } from "vue";
 
 export type DebugState = {
-  minimized: boolean;
   showAll: boolean | undefined;
 };
 
@@ -10,20 +9,29 @@ export type DebugDockComponents = {
   after: string[];
 };
 
-export function DebugStore(theme?: string) {
+export type DebugPluginOptions = {
+  enableIf: () => boolean;
+  dock: {
+    hideIfNoSlots?: true;
+    slotTitleLimit?: number;
+  };
+  defaultDebugTheme: string;
+  registerDebugComponent: boolean;
+  components?: {
+    before?: Record<string, Component>;
+    after?: Record<string, Component>;
+  };
+};
+
+export function DebugStore(opts: DebugPluginOptions) {
   const slots = ref(new Map<number, { name?: string; data: any }>());
 
   let stateFromStorage = localStorage.getItem("vd__debugState");
-  let defaultState: DebugState = {
-    minimized: false,
-    showAll: undefined,
-  };
-
+  let defaultState: DebugState = { showAll: undefined };
   let defaultVisibility: Record<number, boolean> = {};
 
   if (stateFromStorage) {
     const { state, visibility } = JSON.parse(stateFromStorage);
-
     defaultState = state;
     defaultVisibility = visibility;
   }
@@ -100,9 +108,11 @@ export function DebugStore(theme?: string) {
   }
 
   return {
+    enabled: opts.enableIf(),
+    defaultTheme: opts.defaultDebugTheme ?? "light",
+    options: opts as Omit<DebugPluginOptions, "components">,
     state,
     stats,
-    defaultTheme: theme ? theme : "light",
     addSlot,
     removeSlot,
     isVisible,

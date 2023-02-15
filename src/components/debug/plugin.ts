@@ -1,24 +1,23 @@
-import { App, Component, Plugin } from "vue";
+import { App, Plugin } from "vue";
 import Debug from "./Debug.vue";
 import DebugDock from "./DebugDock.vue";
-import { DebugStore, DebugDockComponents } from "./";
-
-type DebugPluginOptions = {
-  defaultDebugTheme?: string;
-  registerDebugComponent?: boolean;
-  components?: {
-    before?: Record<string, Component>;
-    after?: Record<string, Component>;
-  };
-};
+import { DebugStore, DebugDockComponents, DebugPluginOptions } from "./";
 
 const DebugPlugin = <Plugin>{
-  install(app, options?: DebugPluginOptions) {
+  install(app, options: Partial<DebugPluginOptions> = {}) {
     // Merge options
     const opts: DebugPluginOptions = {
-      defaultDebugTheme: "light",
-      registerDebugComponent: false,
-      ...(options || {}),
+      enableIf: options.enableIf ?? (() => import.meta.env.DEV),
+      dock: {
+        hideIfNoSlots: true,
+        slotTitleLimit: 20,
+        ...(options.dock || {}),
+      },
+      defaultDebugTheme: options.defaultDebugTheme ?? "light",
+      registerDebugComponent: options.registerDebugComponent ?? false,
+      components: {
+        ...(options.components || {}),
+      },
     };
 
     // Register Debug Dock
@@ -53,14 +52,18 @@ const DebugPlugin = <Plugin>{
           DebugDockComponents.after.push(Name);
         }
       }
+      delete opts.components;
     }
 
     // provide state
-    app.provide("DebugStore", DebugStore(opts.defaultDebugTheme));
+    app.provide("DebugStore", DebugStore(opts));
     app.provide("DebugDockComponents", DebugDockComponents);
   },
 };
 
-export const useDebugPlugin = (app: App, options?: DebugPluginOptions) => {
+export const useDebugPlugin = (
+  app: App,
+  options?: Partial<DebugPluginOptions>
+) => {
   return app.use(DebugPlugin, options);
 };

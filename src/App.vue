@@ -47,7 +47,12 @@ const blogPost = {
   <HelloWorld msg="Vite + Vue" />
 
   <Debug style="margin-top: 20px" :data="user" />
-  <Debug style="margin-top: 20px" :data="blogPost" theme="dark" />
+  <Debug
+    style="margin-top: 20px"
+    :data="blogPost"
+    theme="dark"
+    name="Music Player"
+  />
 
   <!--suppress VueMissingComponentImportInspection -->
   <DebugDock />

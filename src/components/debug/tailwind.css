@@ -89,5 +89,6 @@
 }
 
 .vdd-tab:not(.active) {
-    @apply bg-stone-800  hover:bg-stone-700;
+    @apply bg-stone-800 hover:bg-stone-700;
+    @apply border border-solid border-stone-700;
 }

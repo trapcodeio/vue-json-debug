@@ -7,10 +7,8 @@ export default {
 import { computed, onBeforeUnmount, onMounted, type PropType, ref } from "vue";
 import { useDebugStore } from "./";
 
-// Check if in development mode
-const isDev = import.meta.env.DEV;
-
 const {
+  enabled,
   defaultTheme,
   state,
   addSlot,
@@ -35,7 +33,7 @@ const id = ref<number>();
 
 const showMe = computed(() => {
   // only show if in dev mode
-  if (isDev && state.showAll !== false) {
+  if (enabled && state.showAll !== false) {
     // only show id has been assigned and is visible
     return (
       typeof id.value === "number" && (state.showAll || isVisible(id.value))
