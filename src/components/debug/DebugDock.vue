@@ -36,6 +36,11 @@ function brief(str: string, limit = 6) {
   if (str.length <= limit) return str;
   return str.slice(0, limit).trim() + "...";
 }
+
+function onSLotClick(i: number) {
+  if (state.showAll !== undefined) return;
+  return toggleVisibility(i);
+}
 </script>
 <template>
   <div v-if="showMe" id="DebugDock">
@@ -50,9 +55,9 @@ function brief(str: string, limit = 6) {
         <div class="vdd-tabs">
           <template v-for="i of stats.keys">
             <button
-              @click.prevent="() => toggleVisibility(i)"
+              @click.prevent="() => onSLotClick(i)"
               class="vdd-tab"
-              :class="{ active: isVisible(i) }"
+              :class="{ active: (state.showAll !== false) & isVisible(i) }"
             >
               {{
                 stats.names[i]
