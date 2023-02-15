@@ -45,12 +45,7 @@ const blogPost = {
   <h2>vue-json-debug Demo</h2>
 
   <Debug style="margin-top: 20px" :data="user" name="User" />
-  <Debug
-    style="margin-top: 20px"
-    :data="blogPost"
-    theme="dark"
-    name="Blog Post"
-  />
+  <Debug style="margin-top: 20px" :data="blogPost" theme="dark" />
 
   <DebugDock />
 

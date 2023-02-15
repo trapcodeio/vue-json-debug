@@ -63,13 +63,11 @@ function onSLotClick(i: number) {
                   (state.showAll !== false && isVisible(i)),
               }"
             >
-              {{
-                stats.names[i]
-                  ? i +
-                    ". " +
-                    brief(stats.names[i], options.dock.slotTitleLimit)
-                  : i
-              }}
+              <small v-if="stats.names[i]">
+                <b> {{ i + ". " }}</b>
+                {{ brief(stats.names[i], options.dock.slotTitleLimit) }}
+              </small>
+              <span v-else v-text="i"></span>
             </button>
           </template>
         </div>
