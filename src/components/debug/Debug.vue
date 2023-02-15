@@ -4,8 +4,21 @@ export default {
 };
 </script>
 <script lang="ts" setup>
-import { computed, onBeforeUnmount, onMounted, type PropType, ref } from "vue";
+import {
+  computed,
+  getCurrentInstance,
+  onBeforeUnmount,
+  onMounted,
+  type PropType,
+  ref,
+} from "vue";
 import { useDebugStore } from "./";
+
+const instance = getCurrentInstance();
+let ParentName = instance?.parent?.type.__file;
+if (ParentName) {
+  ParentName = ParentName.split("/").pop();
+}
 
 const {
   enabled,
@@ -27,10 +40,10 @@ const props = defineProps({
   name: { type: String },
   hideName: { type: Boolean, default: false },
   theme: { type: String },
+  useParentName: { type: Boolean, default: false },
 });
 
 const id = ref<number>();
-
 const showMe = computed(() => {
   // only show if in dev mode
   if (enabled && state.showAll !== false) {
@@ -42,8 +55,16 @@ const showMe = computed(() => {
   return false;
 });
 
+const name = computed<string | undefined>(() => {
+  if (props.name) {
+    return props.name;
+  } else if (props.useParentName) {
+    return ParentName;
+  }
+});
+
 onMounted(() => {
-  id.value = addSlot(props.data, props.name);
+  id.value = addSlot(props.data, name.value);
 });
 
 // Convert object to json string
