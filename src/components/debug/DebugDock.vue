@@ -32,7 +32,8 @@ const showAllTitle = computed(() => {
   return "custom";
 });
 
-function brief(str: string, limit = 6) {
+function brief(str?: string, limit = 6) {
+  if (!str) return "";
   if (str.length <= limit) return str;
   return str.slice(0, limit).trim() + "...";
 }

@@ -15,6 +15,10 @@
     @apply font-medium px-1 my-0;
 }
 
+.vd-path {
+    @apply text-center text-xs opacity-20 hover:opacity-100 p-0.5;
+}
+
 .vd-light-theme {
     @apply bg-stone-100 text-stone-900 rounded shadow text-left;
 }
@@ -39,6 +43,8 @@
 .vd-dark-theme .vd-header > span {
     @apply text-green-600;
 }
+
+
 
 
 #DebugDock {

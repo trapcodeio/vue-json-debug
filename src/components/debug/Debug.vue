@@ -15,9 +15,10 @@ import {
 import { useDebugStore } from "./";
 
 const instance = getCurrentInstance();
-let ParentName = instance?.parent?.type.__file;
-if (ParentName) {
-  ParentName = ParentName.split("/").pop();
+let ParentPath = instance?.parent?.type.__file;
+let ParentPathComponent = undefined as string | undefined;
+if (ParentPath) {
+  ParentPathComponent = ParentPath.split("/").pop();
 }
 
 const {
@@ -59,7 +60,7 @@ const name = computed<string | undefined>(() => {
   if (props.name) {
     return props.name;
   } else if (props.useParentName) {
-    return ParentName;
+    return ParentPathComponent;
   }
 });
 
@@ -91,10 +92,12 @@ onBeforeUnmount(() => {
           <span v-if="name && !hideName" v-text="name"> </span>
           <span v-else></span>
 
-          <button @click.prevent="() => toggleVisibility(id)">[x]</button>
+          <button @click.prevent="() => toggleVisibility(id ?? 1)">[x]</button>
         </div>
 
         <pre class="vd-content" v-text="processData(data, space)"></pre>
+
+        <div class="vd-path">@{{ ParentPath }}</div>
       </template>
       <slot v-else></slot>
     </div>
