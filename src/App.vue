@@ -1,7 +1,6 @@
+<!--suppress VueMissingComponentImportInspection -->
 <script setup lang="ts">
 import HelloWorld from "./components/HelloWorld.vue";
-import Debug from "./components/debug/Debug.vue";
-// import DebugDock from "./components/debug/DebugDock.vue";
 
 // User Object
 const user = {
@@ -54,7 +53,6 @@ const blogPost = {
     name="Blog Post"
   />
 
-  <!--suppress VueMissingComponentImportInspection -->
   <DebugDock />
 </template>
 
