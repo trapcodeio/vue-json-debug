@@ -46,12 +46,12 @@ const blogPost = {
   </div>
   <HelloWorld msg="Vite + Vue" />
 
-  <Debug style="margin-top: 20px" :data="user" />
+  <Debug style="margin-top: 20px" :data="user" name="User" />
   <Debug
     style="margin-top: 20px"
     :data="blogPost"
     theme="dark"
-    name="Music Player"
+    name="Blog Post"
   />
 
   <!--suppress VueMissingComponentImportInspection -->
