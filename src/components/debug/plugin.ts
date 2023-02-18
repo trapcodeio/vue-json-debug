@@ -7,7 +7,7 @@ const DebugPlugin = <Plugin>{
   install(app, options: Partial<DebugPluginOptions> = {}) {
     // Merge options
     const opts: DebugPluginOptions = {
-      enableIf: options.enableIf ?? (() => import.meta.env.DEV),
+      enableIf: options.enableIf ? options.enableIf : () => import.meta.env.DEV,
       dock: {
         hideIfNoSlots: true,
         slotTitleLimit: 20,
