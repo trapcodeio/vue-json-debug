@@ -51,8 +51,8 @@ function onSLotClick(i: number) {
           <component :is="component" />
         </template>
       </template>
-      <div class="vdd-slots">
-        <span class="vdd-label">slots:</span>
+      <div class="vdd-container vdd-slots">
+        <small class="vdd-label">slots:</small>
         <div class="vdd-tabs">
           <template v-for="i of stats.keys">
             <button

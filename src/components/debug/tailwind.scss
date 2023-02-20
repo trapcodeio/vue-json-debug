@@ -1,12 +1,18 @@
+//@tailwind base;
+//@tailwind components;
+//@tailwind utilities;
+
 .vd-header {
   @apply flex justify-between;
-}
-.vd-header > button {
-  @apply p-1 m-0 bg-transparent border-none cursor-pointer text-sm;
-  @apply hover:underline hover:font-bold;
-}
-.vd-header > span {
-  @apply p-1 text-sm font-medium;
+
+  > button {
+    @apply p-1 m-0 bg-transparent border-none cursor-pointer text-sm;
+    @apply hover:underline hover:font-bold;
+  }
+
+  > span {
+    @apply p-1 text-sm font-medium;
+  }
 }
 
 .vd-content {
@@ -19,23 +25,28 @@
 
 .vd-light-theme {
   @apply bg-stone-100 text-stone-900 rounded shadow text-left;
+
+  .vd-header > button {
+    @apply text-stone-900;
+  }
+
+  .vd-header > span {
+    @apply text-green-700;
+  }
 }
-.vd-light-theme .vd-header > button {
-  @apply text-stone-900;
-}
-.vd-light-theme .vd-header > span {
-  @apply text-green-700;
-}
+
 
 .vd-dark-theme {
   @apply bg-stone-900;
   @apply text-stone-100 rounded shadow text-left;
-}
-.vd-dark-theme .vd-header > button {
-  @apply text-stone-100;
-}
-.vd-dark-theme .vd-header > span {
-  @apply text-green-600;
+
+  .vd-header > button {
+    @apply text-stone-100;
+  }
+
+  .vd-header > span {
+    @apply text-green-600;
+  }
 }
 
 #DebugDock {
@@ -45,23 +56,27 @@
 }
 
 .vdd-wrapper {
-  @apply lg:container mx-auto text-left flex;
+  @apply lg:container mx-auto text-left flex ;
   vertical-align: center;
 }
 
-.vdd-container, .vdd-slots {
+.vdd-container {
   border-right: 1px solid;
   @apply flex flex-row border-stone-700 border-opacity-60 px-3 py-1;
-}
-.vdd-container:last-child, .vdd-slots:last-child {
-  border-right: none;
+
+  &:last-child {
+    border-right: none;
+  }
+
 }
 
 .vdd-slots {
+  @extend .vdd-container;
   @apply space-x-3;
-}
-.vdd-slots svg {
-  @apply w-4 h-4;
+
+  svg {
+    @apply w-4 h-4;
+  }
 }
 
 .vdd-slot-actions {
@@ -83,13 +98,13 @@
 .vdd-tab {
   @apply px-2 py-0.5 border-0 rounded-full ring-0;
   @apply focus:ring-0 focus:outline-none cursor-pointer;
-}
-.vdd-tab.active {
-  @apply bg-green-900  hover:bg-green-800;
-}
-.vdd-tab:not(.active) {
-  @apply bg-stone-800 hover:bg-stone-700;
-  @apply border border-solid border-stone-700;
-}
 
-/*# sourceMappingURL=tailwind.css.map */
+  &.active {
+    @apply bg-green-900  hover:bg-green-800;
+  }
+
+  &:not(.active) {
+    @apply bg-stone-800 hover:bg-stone-700;
+    @apply border border-solid border-stone-700;
+  }
+}
