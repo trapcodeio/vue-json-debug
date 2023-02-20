@@ -57,11 +57,14 @@
 
 .vdd-wrapper {
   @apply lg:container mx-auto text-left flex ;
-  vertical-align: center;
+
 }
 
 .vdd-container {
   border-right: 1px solid;
+  align-items: center;
+  vertical-align: center;
+
   @apply flex flex-row border-stone-700 border-opacity-60 px-3 py-1;
 
   &:last-child {
