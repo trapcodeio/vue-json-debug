@@ -52,7 +52,7 @@ function onSLotClick(i: number) {
         </template>
       </template>
       <div class="vdd-slots">
-        <span class="vdd-text">slots:</span>
+        <span class="vdd-label">slots:</span>
         <div class="vdd-tabs">
           <template v-for="i of stats.keys">
             <button

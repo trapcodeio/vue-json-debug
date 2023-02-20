@@ -4,7 +4,8 @@
 module.exports = {
   content: [
       "./src/components/debug/Debug.vue",
-      "./src/components/debug/DebugDock.vue"
+      "./src/components/debug/DebugDock.vue",
+      "./src/components/RouterInfo.vue"
   ],
   theme: {
     extend: {
