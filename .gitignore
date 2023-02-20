@@ -8,4 +8,4 @@ dist
 
 
 src/assets/debug.css
-src/components/debug/tailwind.css.map
+*.map
