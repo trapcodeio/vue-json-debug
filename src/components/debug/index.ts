@@ -1,5 +1,6 @@
 import { Component, computed, inject, reactive, ref, watch } from "vue";
 
+export type DebugID = number | string;
 export type DebugState = {
   showAll: boolean | undefined;
 };
@@ -24,11 +25,11 @@ export type DebugPluginOptions = {
 };
 
 export function DebugStore(opts: DebugPluginOptions) {
-  const slots = ref(new Map<number, { name?: string; data: any }>());
+  const slots = ref(new Map<DebugID, { name?: string; data: any }>());
 
   let stateFromStorage = localStorage.getItem("vd__debugState");
   let defaultState: DebugState = { showAll: undefined };
-  let defaultVisibility: Record<number, boolean> = {};
+  let defaultVisibility: Record<DebugID, boolean | undefined> = {};
 
   if (stateFromStorage) {
     const { state, visibility } = JSON.parse(stateFromStorage);
@@ -55,7 +56,7 @@ export function DebugStore(opts: DebugPluginOptions) {
 
   // get slots as array
   const stats = computed(() => {
-    const names = {} as Record<number, string | undefined>;
+    const names = {} as Record<DebugID, string | undefined>;
 
     slots.value.forEach((v, k) => {
       names[k] = v.name;
@@ -67,21 +68,32 @@ export function DebugStore(opts: DebugPluginOptions) {
     };
   });
 
-  function addSlot(data: any, name?: string) {
-    const id = slots.value.size + 1;
+  function addSlot(data: { data: any; name?: string }) {
+    // const id = data.name !== undefined ? data.name : slots.value.size + 1;
+    let id: DebugID = slots.value.size + 1;
+    if (data.name !== undefined) {
+      // use name as id if it doesn't exist yet in the map
+      if (!slots.value.has(data.name)) {
+        id = data.name;
+      }
+    }
 
     // add slot to map
     if (!visibility.hasOwnProperty(id)) visibility[id] = true;
-    slots.value.set(id, { name, data });
+
+    slots.value.set(id, {
+      name: data.name,
+      data: data.data,
+    });
 
     return id;
   }
 
-  function removeSlot(id: number) {
+  function removeSlot(id: DebugID) {
     slots.value.delete(id);
   }
 
-  function toggleVisibility(id: number, val?: boolean) {
+  function toggleVisibility(id: DebugID, val?: boolean) {
     if (val === undefined) {
       if (typeof visibility[id] === "boolean") {
         visibility[id] = !visibility[id];
@@ -93,7 +105,7 @@ export function DebugStore(opts: DebugPluginOptions) {
     }
   }
 
-  function isVisible(id: number) {
+  function isVisible(id: DebugID) {
     return visibility[id] !== false;
   }
 
@@ -121,6 +133,6 @@ export function DebugStore(opts: DebugPluginOptions) {
   };
 }
 
-export const useDebugStore = () => {
+export const useDebugState = () => {
   return inject<ReturnType<typeof DebugStore>>("DebugStore")!;
 };

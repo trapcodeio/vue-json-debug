@@ -11,7 +11,8 @@
     "watch:css": "npx tailwindcss -i ./src/components/debug/tailwind.css -o ./src/assets/debug.css --watch"
   },
   "dependencies": {
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

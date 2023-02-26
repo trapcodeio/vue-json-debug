@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { DebugDockComponents, useDebugStore } from "./index";
+import { DebugDockComponents, DebugID, useDebugState } from "./index";
 import { computed, inject } from "vue";
 
 const {
@@ -10,7 +10,7 @@ const {
   isVisible,
   toggleVisibility,
   toggleShowAll,
-} = useDebugStore();
+} = useDebugState();
 
 const debugDockComponents = inject<DebugDockComponents>("DebugDockComponents", {
   before: [],
@@ -38,7 +38,7 @@ function brief(str?: string, limit = 6) {
   return str.slice(0, limit).trim() + "...";
 }
 
-function onSLotClick(i: number) {
+function onSLotClick(i: DebugID) {
   if (state.showAll !== undefined) return;
   return toggleVisibility(i);
 }
@@ -65,7 +65,6 @@ function onSLotClick(i: number) {
               }"
             >
               <small v-if="stats.names[i]">
-                <b> {{ i + ". " }}</b>
                 {{ brief(stats.names[i], options.dock.slotTitleLimit) }}
               </small>
               <span v-else v-text="i"></span>

@@ -12,7 +12,7 @@ import {
   type PropType,
   ref,
 } from "vue";
-import { useDebugStore } from "./";
+import { DebugID, useDebugState } from "./";
 
 const instance = getCurrentInstance();
 let ParentPath = instance?.parent?.type.__file;
@@ -29,7 +29,7 @@ const {
   removeSlot,
   isVisible,
   toggleVisibility,
-} = useDebugStore();
+} = useDebugState();
 
 /**
  * Props
@@ -44,13 +44,14 @@ const props = defineProps({
   useParentName: { type: Boolean, default: false },
 });
 
-const id = ref<number>();
+const id = ref<DebugID>();
 const showMe = computed(() => {
   // only show if in dev mode
   if (enabled && state.showAll !== false) {
     // only show id has been assigned and is visible
     return (
-      typeof id.value === "number" && (state.showAll || isVisible(id.value))
+      ["number", "string"].includes(typeof id.value) &&
+      (state.showAll || isVisible(id.value!))
     );
   }
   return false;
@@ -65,7 +66,10 @@ const name = computed<string | undefined>(() => {
 });
 
 onMounted(() => {
-  id.value = addSlot(props.data, name.value);
+  id.value = addSlot({
+    name: name.value,
+    data: props.data,
+  });
 });
 
 // Convert object to json string
@@ -78,8 +82,8 @@ function processData(data: any, space: number = 2) {
 }
 
 onBeforeUnmount(() => {
-  if (typeof id.value === "number") {
-    removeSlot(id.value);
+  if (["number", "string"].includes(typeof id.value)) {
+    removeSlot(id.value!);
   }
 });
 </script>

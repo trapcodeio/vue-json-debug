@@ -42,15 +42,22 @@ const blogPost = {
     </a>
   </div>
 
-  <h2>vue-json-debug Demo</h2>
+  <h3>vue-json-debug Demo</h3>
 
-  <Debug style="margin-top: 20px" :data="user" name="User" />
-  <Debug
-    style="margin-top: 20px"
-    :data="blogPost"
-    theme="dark"
-    use-parent-name
-  />
+  <!-- Short Menu -->
+  <div>
+    <router-link :to="{ name: 'index' }" style="margin-right: 5px"
+      >Home</router-link
+    >
+    <router-link :to="{ name: 'about' }" style="margin-right: 5px"
+      >About</router-link
+    >
+    <router-link :to="{ name: 'compose' }" style="margin-right: 5px"
+      >Compose</router-link
+    >
+  </div>
+
+  <router-view></router-view>
 
   <DebugDock />
 
