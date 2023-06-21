@@ -73,11 +73,11 @@ The Docker supports registering components before and after the default componen
 
 ```ts
 import RouterInfo from "vue-router/src/components/RouterInfo.vue";
+import ScreenSize from "vue-json-debug/src/components/ScreenSize.vue";
 
 useDebugPlugin(app, {
     components: {
-        before: {'my-component': MyComponent},
-        after: {'my-other-component': MyOtherComponent},
+        after: {RouterInfo, ScreenSize},
     },
 });
 ```
