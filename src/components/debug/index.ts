@@ -12,10 +12,7 @@ export type DebugDockComponents = {
 
 export type DebugPluginOptions = {
   enableIf: () => boolean;
-  dock: {
-    hideIfNoSlots?: true;
-    slotTitleLimit?: number;
-  };
+  dock: { hideIfNoSlots?: boolean; slotTitleLimit?: number };
   defaultDebugTheme: string;
   registerDebugComponent: boolean;
   components?: {

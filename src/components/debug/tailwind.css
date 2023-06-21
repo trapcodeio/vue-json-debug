@@ -1,3 +1,4 @@
+@tailwind utilities;
 .vd-header {
   @apply flex justify-between;
 }
@@ -45,7 +46,12 @@
 }
 
 .vdd-wrapper {
-  @apply lg:container mx-auto text-left flex;
+  @apply lg:container mx-auto text-left flex  overflow-auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.vdd-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .vdd-container, .vdd-slots {
@@ -79,6 +85,14 @@
 
 .vdd-label {
   @apply text-stone-300 opacity-70;
+}
+
+.vdd-text {
+  @apply text-green-400;
+}
+
+.vdd-text-gray {
+  @apply text-gray-400;
 }
 
 .vdd-tab {

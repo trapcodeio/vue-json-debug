@@ -2,10 +2,12 @@
 // const colors = require('tailwindcss/colors');
 
 module.exports = {
+    // prefix: 'vdds-',
   content: [
       "./src/components/debug/Debug.vue",
       "./src/components/debug/DebugDock.vue",
-      "./src/components/RouterInfo.vue"
+      "./src/components/debug/docks/RouterInfo.vue",
+      "./src/components/debug/docks/ScreenSize.vue"
   ],
   theme: {
     extend: {

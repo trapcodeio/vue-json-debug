@@ -7,19 +7,15 @@ const DebugPlugin = <Plugin>{
   install(app, options: Partial<DebugPluginOptions> = {}) {
     // Merge options
     const opts: DebugPluginOptions = {
-      enableIf: options.enableIf
-        ? options.enableIf
-        : () => import.meta.env.DEV as boolean,
+      enableIf: options.enableIf ? options.enableIf : () => import.meta.env.DEV,
       dock: {
         hideIfNoSlots: true,
         slotTitleLimit: 20,
         ...(options.dock || {}),
       },
-      defaultDebugTheme: options.defaultDebugTheme ?? "light",
+      defaultDebugTheme: options.defaultDebugTheme ?? "dark",
       registerDebugComponent: options.registerDebugComponent ?? false,
-      components: {
-        ...(options.components || {}),
-      },
+      components: options.components ?? {},
     };
 
     // Register Debug Dock
