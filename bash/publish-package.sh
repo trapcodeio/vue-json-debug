@@ -8,7 +8,6 @@ fi
 
 echo "Publishing version $versionType"
 
-
 cd ./package
 
 # if versionType is `none` the skip the versioning and publish

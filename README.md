@@ -67,10 +67,7 @@ const form = ref({foo: 'bar'});
 </template>
 ```
 
-## Available Dock Components
 
-- `RouteInfo` - Displays the current route name.
-- `ScreenSize` - Displays the current screen width and height.
 
 ## Options
 
@@ -94,7 +91,7 @@ export type DebugPluginOptions = {
 |------------------------|-----------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 | enableIf               | `() => boolean` | `() => true` | A function that returns a boolean to enable/disable the plugin.                                                                            | 
 | dock                   | `Object`        |              | An object that contains the dock options.                                                                                                  |
-| dock.hideIfNoSlots     | `boolean`       | `true`       | If `true` the dock will be hidden if there are no slots to display. If you want the dock to be always visible, set this option to `false`. |
+| dock.hideIfNoSlots     | `boolean`       | `false`      | If `true` the dock will be hidden if there are no slots to display. If you want the dock to be always visible, set this option to `false`. |
 | dock.slotTitleLimit    | `number`        | `20`         | The maximum number of characters to display in the slot title before truncating it.                                                        |
 | defaultDebugTheme      | `string`        | `dark`       | The default theme to use for the debug component. You can use the following values: `light`, `dark`.                                       |
 | registerDebugComponent | `boolean`       | `false`      | If `true` the `<debug>` component will be registered globally.                                                                             |
@@ -103,11 +100,16 @@ export type DebugPluginOptions = {
 | components.after       | `Object`        |              | An object that contains the components to register after the default components.                                                           |
 
 
+## Available Dock Components
+
+- `RouteInfo` - Displays the current route name. (Requires [vue-router](https://router.vuejs.org/)
+- `ScreenSize` - Displays the current screen width and height. (Requires [@vueuse/core](https://vueuse.org/guide/))
+
 ## Registering Components
 The Docker supports registering components before and after the default components. This provides a way to add more components to the debug component.
 
 ```ts
-import RouterInfo from "vue-router/src/components/RouterInfo.vue";
+import RouterInfo from "vue-json-debug/src/components/RouterInfo.vue";
 import ScreenSize from "vue-json-debug/src/components/ScreenSize.vue";
 
 useDebugPlugin(app, {
