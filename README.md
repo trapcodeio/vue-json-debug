@@ -102,7 +102,7 @@ export type DebugPluginOptions = {
 
 ## Available Dock Components
 
-- `RouteInfo` - Displays the current route name. (Requires [vue-router](https://router.vuejs.org/)
+- `RouteInfo` - Displays the current route name. (Requires [vue-router](https://router.vuejs.org/))
 - `ScreenSize` - Displays the current screen width and height. (Requires [@vueuse/core](https://vueuse.org/guide/))
 
 ## Registering Components
