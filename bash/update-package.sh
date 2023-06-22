@@ -1,5 +1,7 @@
-#u update readme
+#update readme
 cp ./README.md ./package/README.md
+# Move readme asset
+cp ./preview.png ./package/preview.png
 
 # delete package src folder
 rm -rf ./package/src

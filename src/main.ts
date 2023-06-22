@@ -11,7 +11,7 @@ const app = createApp(App);
 app.use(router);
 
 useDebugPlugin(app, {
-  // defaultDebugTheme: "dark",
+  defaultDebugTheme: "dark",
   registerDebugComponent: true,
   components: {
     after: { RouterInfo, ScreenSize },
