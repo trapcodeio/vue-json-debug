@@ -3,6 +3,7 @@ node_modules
 .vscode
 package/src
 package/README.md
+package/preview.png
 dist
 
 
