@@ -1,6 +1,9 @@
-#update readme
-cp ./README.md ./package/README.md
-# Move readme asset
+# Remove old readme and preview
+rm -rf ./package/readme.md
+rm -rf ./package/preview.png
+
+# update readme & preview
+cp ./readme.md ./package/readme.md
 cp ./preview.png ./package/preview.png
 
 # delete package src folder
