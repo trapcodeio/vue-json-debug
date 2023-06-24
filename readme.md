@@ -133,3 +133,32 @@ export default DefineNuxtPlugin((nuxtApp) => {
     });
 });
 ```
+
+Add the plugin and styles to your `nuxt.config.ts` file.
+
+```ts
+export default defineNuxtConfig({
+    css: [
+        // ... your other styles
+        'vue-json-debug/src/debug.css'
+    ],
+    plugins: [
+        // ... your other plugins
+        {
+            src: '@/plugins/path/to/your/plugin.ts',
+            mode: 'client'
+        }
+    ],
+});
+```
+
+Add DebugDock to your app just like in the Vue example.
+But surrounded by a `<client-only>` component.
+```vue
+
+<template>
+  <client-only>
+    <debug-dock/>
+  </client-only>
+</template>
+```
