@@ -51,7 +51,7 @@ function onSLotClick(i: DebugID) {
           <component :is="component" />
         </template>
       </template>
-      <div class="vdd-container vdd-slots">
+      <div v-show="stats.keys.length" class="vdd-container vdd-slots">
         <small class="vdd-label">slots:</small>
         <div class="vdd-tabs">
           <template v-for="i of stats.keys">
