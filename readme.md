@@ -72,7 +72,7 @@ const form = ref({foo: 'bar'});
 ## Options
 
 ```ts
-export type DebugPluginOptions = {
+type DebugPluginOptions = {
     enableIf: () => boolean;
     dock: {
         hideIfNoSlots?: boolean;
@@ -99,6 +99,31 @@ export type DebugPluginOptions = {
 | components.before      | `Object`        |              | An object that contains the components to register before the default components.                                                          |
 | components.after       | `Object`        |              | An object that contains the components to register after the default components.                                                           |
 
+
+## Debug Component Props
+```ts
+type DebugProps = {
+    data: object;
+    forceShow?: boolean;
+    space?: number;
+    name?: string;
+    hideName?: boolean;
+    hideFirst: boolean;
+    theme?: string;
+    useParentName?: boolean;
+};
+```
+
+| Prop          | Type      | Default | Description                                                                                         |
+|---------------|-----------|---------|-----------------------------------------------------------------------------------------------------|
+| data          | `object`  |         | The data to display.                                                                                |
+| forceShow     | `boolean` | `false` | If `true` the debug component will be shown no matter what.                                         |
+| space         | `number`  | `2`     | The number of spaces to use for JSON indentation.                                                   |
+| name          | `string`  |         | The name to display.                                                                                |
+| hideName      | `boolean` | `false` | If `true` the name will be hidden.                                                                  |
+| hideFirst     | `boolean` | `false` | If `true` it will be hidden before mount.                                                           |
+| theme         | `string`  |         | The theme to use for the debug component.                                                           |
+| useParentName | `boolean` | `false` | If `true` the name of the parent file where the debug component is called from will be used as name |
 
 ## Available Dock Components
 
