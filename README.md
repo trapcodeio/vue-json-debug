@@ -2,7 +2,7 @@
 
 **STAGE:** [RFC]
 
-![preview.png](preview.png)
+![preview.png](./preview.png)
 
 A simple Vue component to display JSON data in multiple components.
 
