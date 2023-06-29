@@ -1,9 +1,9 @@
 # Remove old readme and preview
-rm -rf ./package/readme.md
+rm -rf ./package/README.md
 rm -rf ./package/preview.png
 
 # update readme & preview
-cp ./readme.md ./package/readme.md
+cp ./README.md ./package/README.md
 cp ./preview.png ./package/preview.png
 
 # delete package src folder
