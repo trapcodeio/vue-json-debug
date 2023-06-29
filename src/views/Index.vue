@@ -34,7 +34,7 @@ const blogPost = {
 
 <template>
   <section>
-    <Debug style="margin-top: 20px" :data="user" name="User" />
+    <Debug style="margin-top: 20px" :data="user" name="User" hide-first />
     <Debug
       style="margin-top: 20px"
       :data="blogPost"

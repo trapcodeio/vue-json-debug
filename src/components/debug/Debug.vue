@@ -7,8 +7,8 @@ export default {
 import {
   computed,
   getCurrentInstance,
+  onBeforeMount,
   onBeforeUnmount,
-  onMounted,
   type PropType,
   ref,
 } from "vue";
@@ -40,6 +40,7 @@ const props = defineProps({
   space: { type: Number, default: 2 },
   name: { type: String },
   hideName: { type: Boolean, default: false },
+  hideFirst: { type: Boolean, default: false },
   theme: { type: String },
   useParentName: { type: Boolean, default: false },
 });
@@ -65,14 +66,18 @@ const name = computed<string | undefined>(() => {
   }
 });
 
-onMounted(() => {
+onBeforeMount(() => {
   id.value = addSlot({
     name: name.value,
     data: props.data,
   });
+
+  if (props.hideFirst) {
+    toggleVisibility(id.value!, false);
+  }
 });
 
-// Convert object to json string
+// Convert an object to json string
 function processData(data: any, space: number = 2) {
   if (typeof data === "object") {
     return JSON.stringify(data, null, space).trim();
