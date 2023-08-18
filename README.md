@@ -134,8 +134,8 @@ type DebugProps = {
 The Docker supports registering components before and after the default components. This provides a way to add more components to the debug component.
 
 ```ts
-import RouterInfo from "vue-json-debug/src/components/RouterInfo.vue";
-import ScreenSize from "vue-json-debug/src/components/ScreenSize.vue";
+import RouterInfo from "vue-json-debug/src/docks/RouterInfo.vue";
+import ScreenSize from "vue-json-debug/src/docks/ScreenSize.vue";
 
 useDebugPlugin(app, {
     components: {
@@ -150,7 +150,7 @@ To add this package to nuxt, you need to create a plugin.
 A nuxt plugin gives you the vue `app` instance.
 
 ```ts
-export default DefineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin((nuxtApp) => {
     const app = nuxtApp.vueApp;
     
     useDebugPlugin(app, {
