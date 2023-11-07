@@ -45,10 +45,10 @@ export function DebugStore(opts: DebugPluginOptions) {
     () => {
       localStorage.setItem(
         "vd__debugState",
-        JSON.stringify({ state, visibility })
+        JSON.stringify({ state, visibility }),
       );
     },
-    { immediate: true }
+    { immediate: true },
   );
 
   // get slots as array

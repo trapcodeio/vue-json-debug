@@ -3,6 +3,7 @@ export default {
   name: "Debug",
 };
 </script>
+
 <script lang="ts" setup>
 import {
   computed,
@@ -12,7 +13,7 @@ import {
   type PropType,
   ref,
 } from "vue";
-import { DebugID, useDebugState } from "./";
+import { type DebugID, useDebugState } from "./";
 
 const instance = getCurrentInstance();
 let ParentPath = instance?.parent?.type.__file;
