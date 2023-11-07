@@ -43,7 +43,7 @@ const props = defineProps({
   hideName: { type: Boolean, default: false },
   hideFirst: { type: Boolean, default: false },
   theme: { type: String },
-  useParentName: { type: Boolean, default: false },
+  useParentName: { type: Boolean, default: true },
 });
 
 const id = ref<DebugID>();

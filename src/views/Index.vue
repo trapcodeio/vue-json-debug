@@ -35,12 +35,7 @@ const blogPost = {
 <template>
   <section>
     <Debug style="margin-top: 20px" :data="user" name="User" hide-first />
-    <Debug
-      style="margin-top: 20px"
-      :data="blogPost"
-      theme="dark"
-      use-parent-name
-    />
+    <Debug style="margin-top: 20px" :data="blogPost" theme="dark" />
 
     <!--    <Debug style="margin-top: 20px" :data="user" />-->
     <!--    <Debug style="margin-top: 20px" :data="blogPost" theme="dark" />-->

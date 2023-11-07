@@ -43,8 +43,6 @@ const song = {
 <template>
   <section>
     <Debug style="margin-top: 20px" :data="movie" name="Movie" />
-    <Debug style="margin-top: 20px" :data="song" theme="dark" use-parent-name />
-    <!--    <Debug style="margin-top: 20px" :data="movie" />-->
-    <!--    <Debug style="margin-top: 20px" :data="song" theme="dark" />-->
+    <Debug style="margin-top: 20px" :data="song" theme="dark" />
   </section>
 </template>
