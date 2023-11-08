@@ -1,4 +1,4 @@
-import { App, type Plugin } from "vue";
+import type { App, Plugin } from "vue";
 import Debug from "./Debug.vue";
 import DebugDock from "./DebugDock.vue";
 import {

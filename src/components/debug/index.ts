@@ -1,4 +1,4 @@
-import { Component, computed, inject, reactive, ref, watch } from "vue";
+import { type Component, computed, inject, reactive, ref, watch } from "vue";
 
 export type DebugID = number | string;
 export type DebugState = {
