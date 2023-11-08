@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { DebugDockComponents, DebugID, useDebugState } from "./index";
+import { type DebugDockComponents, type DebugID, useDebugState } from "./index";
 import { computed, inject } from "vue";
 
 const {

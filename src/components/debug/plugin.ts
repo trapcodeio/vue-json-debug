@@ -1,7 +1,11 @@
-import { App, Plugin } from "vue";
+import { App, type Plugin } from "vue";
 import Debug from "./Debug.vue";
 import DebugDock from "./DebugDock.vue";
-import { DebugStore, DebugDockComponents, DebugPluginOptions } from "./";
+import {
+  DebugStore,
+  type DebugDockComponents,
+  type DebugPluginOptions,
+} from "./";
 
 const DebugPlugin = <Plugin>{
   install(app, options: Partial<DebugPluginOptions> = {}) {
@@ -61,7 +65,7 @@ const DebugPlugin = <Plugin>{
 
 export const useDebugPlugin = (
   app: App,
-  options?: Partial<DebugPluginOptions>
+  options?: Partial<DebugPluginOptions>,
 ) => {
   return app.use(DebugPlugin, options);
 };
