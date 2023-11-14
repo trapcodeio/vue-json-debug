@@ -1,68 +1,65 @@
-//@tailwind base;
-//@tailwind components;
 @tailwind utilities;
 
 .vd-header {
-  @apply flex justify-between;
+  @apply vjd-flex vjd-justify-between;
 
   > button {
-    @apply p-1 m-0 bg-transparent border-none cursor-pointer text-sm;
-    @apply hover:underline hover:font-bold;
+    @apply vjd-p-1 vjd-m-0 vjd-bg-transparent vjd-border-none vjd-cursor-pointer vjd-text-sm;
+    @apply hover:vjd-underline hover:vjd-font-bold;
   }
 
   > span {
-    @apply p-1 text-sm font-medium;
+    @apply vjd-p-1 vjd-text-sm vjd-font-medium;
   }
 }
 
 .vd-content {
-  @apply font-medium px-1 my-0;
+  @apply vjd-font-medium vjd-px-1 vjd-my-0;
 }
 
 .vd-path {
-  @apply text-center text-xs opacity-20 hover:opacity-100 p-0.5;
+  @apply vjd-text-center vjd-text-xs vjd-opacity-20 hover:vjd-opacity-100 vjd-p-0.5;
 }
 
 .vd-light-theme {
-  @apply bg-stone-100 text-stone-900 rounded shadow text-left;
+  @apply vjd-bg-stone-100 vjd-text-stone-900 vjd-rounded vjd-shadow vjd-text-left;
 
   .vd-header > button {
-    @apply text-stone-900;
+    @apply vjd-text-stone-900;
   }
 
   .vd-header > span {
-    @apply text-green-700;
+    @apply vjd-text-green-700;
   }
 }
 
-
 .vd-dark-theme {
-  @apply bg-stone-900;
-  @apply text-stone-100 rounded shadow text-left;
+  @apply vjd-bg-stone-900;
+  @apply vjd-text-stone-100 vjd-rounded vjd-shadow vjd-text-left;
 
   .vd-header > button {
-    @apply text-stone-100;
+    @apply vjd-text-stone-100;
   }
 
   .vd-header > span {
-    @apply text-green-600;
+    @apply vjd-text-green-600;
   }
 }
 
 #DebugDock {
-  @apply fixed bottom-0 left-0 z-50;
+  @apply vjd-fixed vjd-bottom-0 vjd-left-0 vjd-z-50;
   border-top: 1px solid;
-  @apply bg-stone-900 w-full text-sm  border-gray-400 border-opacity-20;
+  @apply vjd-bg-stone-900 vjd-w-full vjd-text-sm vjd-border-gray-400 vjd-border-opacity-20;
 }
 
 .vdd-wrapper {
-  @apply mx-auto text-left flex overflow-auto;
+  @apply vjd-mx-auto vjd-text-left vjd-flex vjd-overflow-auto;
   // hide scrollbar;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .vdd-container {
@@ -70,7 +67,7 @@
   align-items: center;
   vertical-align: center;
 
-  @apply flex flex-row border-stone-700 border-opacity-60 px-3 py-1;
+  @apply vjd-flex vjd-flex-row vjd-border-stone-700 vjd-border-opacity-60 vjd-px-3 vjd-py-1;
 
   &:last-child {
     border-right: none;
@@ -80,47 +77,47 @@
 
 .vdd-slots {
   @extend .vdd-container;
-  @apply space-x-3;
+  @apply vjd-space-x-3;
 
   svg {
-    @apply w-4 h-4;
+    @apply vjd-w-4 vjd-h-4;
   }
 }
 
 .vdd-slot-actions {
-  @apply flex;
+  @apply vjd-flex;
 }
 
 .vdd-show-toggle {
-  @apply text-xs bg-transparent border-none cursor-pointer hover:text-green-500;
+  @apply vjd-text-xs vjd-bg-transparent vjd-border-none vjd-cursor-pointer hover:vjd-text-green-500;
 }
 
 .vdd-tabs {
-  @apply flex space-x-1;
+  @apply vjd-flex vjd-space-x-1;
 }
 
 .vdd-label {
-  @apply text-stone-300 opacity-70;
+  @apply vjd-text-stone-300 vjd-opacity-70;
 }
 
 .vdd-text {
-  @apply text-green-400;
+  @apply vjd-text-green-400;
 }
 
 .vdd-text-gray {
-  @apply text-gray-400;
+  @apply vjd-text-gray-400;
 }
 
 .vdd-tab {
-  @apply px-2 py-0.5 border-0 rounded-full ring-0;
-  @apply focus:ring-0 focus:outline-none cursor-pointer;
+  @apply vjd-px-2 vjd-py-0.5 vjd-border-0 vjd-rounded-full vjd-ring-0;
+  @apply focus:vjd-ring-0 focus:vjd-outline-none vjd-cursor-pointer;
 
   &.active {
-    @apply bg-green-900  hover:bg-green-800;
+    @apply vjd-bg-green-900 hover:vjd-bg-green-800;
   }
 
   &:not(.active) {
-    @apply bg-stone-800 hover:bg-stone-700;
-    @apply border border-solid border-stone-700;
+    @apply vjd-bg-stone-800 hover:vjd-bg-stone-700;
+    @apply vjd-border vjd-border-solid vjd-border-stone-700;
   }
 }
