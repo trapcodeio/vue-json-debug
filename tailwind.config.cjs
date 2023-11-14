@@ -2,7 +2,7 @@
 // const colors = require('tailwindcss/colors');
 
 module.exports = {
-    // prefix: 'vdds-',
+    // prefix: 'vjd-',
   content: [
       "./src/components/debug/Debug.vue",
       "./src/components/debug/DebugDock.vue",

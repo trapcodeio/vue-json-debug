@@ -56,7 +56,7 @@
 }
 
 .vdd-wrapper {
-  @apply lg:container mx-auto text-left flex  overflow-auto;
+  @apply mx-auto text-left flex overflow-auto;
   // hide scrollbar;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
