@@ -37,14 +37,16 @@ function getCurrentBreakpoint() {
 }
 </script>
 <template>
-  <div class="vdd-container space-x-1">
+  <div class="vdd-container vjd-space-x-1">
     <small class="vdd-label">Width:</small>
     <div>
-      <small class="vdd-text uppercase mr-1">{{ screen.breakpoint }}</small>
+      <small class="vdd-text vjd-uppercase vjd-mr-1">{{
+        screen.breakpoint
+      }}</small>
       <small class="vdd-text-gray">[{{ screen.width + "px" }}]</small>
     </div>
   </div>
-  <div class="vdd-container space-x-1">
+  <div class="vdd-container vjd-space-x-1">
     <small class="vdd-label">Height:</small>
     <div>
       <small class="vdd-text">{{ screen.height + "px" }}</small>
