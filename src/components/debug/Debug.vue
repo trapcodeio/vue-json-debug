@@ -87,6 +87,18 @@ function processData(data: any, space: number = 2) {
   }
 }
 
+const copied = ref(false);
+let copiedTimeout: ReturnType<typeof setTimeout> | undefined;
+function copyContent() {
+  const text = String(processData(props.data, props.space));
+  navigator.clipboard?.writeText(text);
+  copied.value = true;
+  if (copiedTimeout) clearTimeout(copiedTimeout);
+  copiedTimeout = setTimeout(() => {
+    copied.value = false;
+  }, 1500);
+}
+
 onBeforeUnmount(() => {
   if (["number", "string"].includes(typeof id.value)) {
     removeSlot(id.value!);
@@ -102,7 +114,10 @@ onBeforeUnmount(() => {
           <span v-if="name && !hideName" v-text="name"> </span>
           <span v-else></span>
 
-          <button @click.prevent="() => toggleVisibility(id ?? 1)">[x]</button>
+          <span>
+            <button @click.prevent="copyContent">{{ copied ? "[copied]" : "[copy]" }}</button>
+            <button @click.prevent="() => toggleVisibility(id ?? 1)">[x]</button>
+          </span>
         </div>
 
         <pre class="vd-content" v-text="processData(data, space)"></pre>
